@@ -1,0 +1,569 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= HTML + BODY ================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+
+  /* CLEAN background — NO overlay, NO demarcation */
+  background:
+    linear-gradient(rgba(30,144,255,0.6), rgba(2,27,58,0.6)),
+    url('background-meme.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* ❌ REMOVED body::before overlay COMPLETELY */
+/* ================= SCROLL PROGRESS BAR ================= */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 0%;
+  background: linear-gradient(90deg, #0ebeff, #ff9900);
+  z-index: 50; /* above header */
+  border-radius: 0 0 5px 5px;
+  transition: width 0.1s ease-out;
+}
+
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+
+  background: rgba(0, 0, 50, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* ================= LOGO ================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.logo img {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(173,216,230,0.6));
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* ================= FLOAT ANIMATION ================= */
+@keyframes floatUpDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.floating-text {
+  animation: floatUpDown 3s ease-in-out infinite;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+/* ================= MENU ================= */
+.menu-container { position: relative; }
+
+.menu-icon {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Dropdown smooth animation */
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 150px;
+  background: rgba(0, 0, 50, 0.9);
+  list-style: none;
+  border-radius: 6px;
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 30;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.dropdown-menu li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-menu li:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ================= BUBBLES (GLOBAL BACKGROUND) ================= */
+.bubbles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* behind all content, above background */
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* ================= WELCOME SECTION ================= */
+.welcome-section {
+  margin-top: 100px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.whale-img {
+  width: 250px;
+  max-width: 40%;
+  animation: floatUpDown 4s ease-in-out infinite;
+}
+
+.bubble-text {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(6px);
+  padding: 35px 50px;
+  border-radius: 35px;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  box-shadow: none; /* ❌ removed shadow line source */
+}
+
+.sub-text {
+  font-size: 1.6rem;
+  color: #e0f7ff;
+  animation: floatUpDown 3.5s ease-in-out infinite;
+}
+
+.buy-btn {
+  padding: 18px 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background: #0b3d91;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.buy-btn:hover {
+  background: #061f4a;
+  transform: scale(1.05);
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+  padding: 80px 16px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-container {
+  max-width: 720px;
+  width: 100%;
+  background: #062e6f;
+  padding: 50px 35px;
+  border-radius: 18px;
+  color: white;
+  text-align: center;
+  box-shadow: none; /* IMPORTANT */
+}
+
+.about-container h2 {
+  font-size: 2rem;
+  margin-bottom: 28px;
+}
+
+.about-container p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* ================= ABOUT IMAGE ================= */
+.about-image-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-image {
+  max-width: 70%;
+  height: auto;
+  display: block;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .logo img { width: 45px; }
+  .logo h1 { font-size: 1.2rem; }
+  .whale-img { width: 180px; }
+  .bubble-text { font-size: 1.6rem; padding: 30px 40px; }
+  .sub-text { font-size: 1.2rem; }
+  .buy-btn { font-size: 1.4rem; padding: 15px 40px; }
+}
+
+/* ================= ROADMAP ================= */
+.roadmap-section {
+  width: 100%;
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.roadmap-title {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 60px;
+}
+
+.roadmap-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.roadmap-card {
+  background: #062e6f;
+  padding: 35px 30px;
+  border-radius: 18px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.roadmap-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.roadmap-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.roadmap-card ul li {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  position: relative;
+  padding-left: 18px;
+}
+
+.roadmap-card ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #8fd3ff;
+}
+
+/* Mobile tweak */
+@media (max-width: 600px) {
+  .roadmap-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* ================= TOKENOMICS ================= */
+.tokenomics-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #041a3d; /* deep dark blue */
+  color: #ffffff;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #0ebeff;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+.tokenomics-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.token-card {
+  background-color: #062e6f; /* slightly lighter deep blue */
+  padding: 30px 25px;
+  border-radius: 20px;
+  min-width: 180px;
+  flex: 1 1 180px;
+  max-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.token-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.token-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #0ebeff;
+}
+
+.token-card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tokenomics-cards {
+    gap: 20px;
+  }
+
+  .token-card {
+    min-width: 140px;
+    max-width: 180px;
+    padding: 25px 20px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tokenomics-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ================= SOCIAL LINKS ================= */
+.social-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #041a3d; /* deep dark blue */
+  color: #ffffff;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #062e6f; /* slightly lighter deep blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.social-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.social-icon:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  background-color: #0ebeff;
+}
+
+.social-icon:hover img {
+  filter: brightness(1.5); /* makes icon pop */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-icons {
+    gap: 25px;
+  }
+
+  .social-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .social-icon img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* ================= CALL TO ACTION ================= */
+.cta-section {
+   /* deep solid blue */
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cta-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta-container p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cta-btn {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.cta-btn.buy-token { background: #ff9900; }
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #021b31;
+  color: #fff;
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 0.9rem;
+}
+
+footer a.back-to-top {
+  display: inline-block;
+  margin-top: 10px;
+  color: #61dafb;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+footer a.back-to-top:hover {
+  color: #fff;
+}
+ footer a.footer-x {
+  color: #1DA1F2; /* X blue */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.25s;
+}
+
+footer a.footer-x:hover {
+  color: #ffffff;
+}
+
+/* ================= SMOOTH SCROLLING ================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .cta-container h2 { font-size: 2rem; }
+  .cta-container p { font-size: 1rem; }
+  .cta-btn { font-size: 1rem; padding: 12px 25px; }
+}
+
+/* Hover glow for whale images */
+.whale-img:hover,
+.about-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(14,190,255,0.6);
+  transition: all 0.3s ease;
+}
+
+/* Hover glow for roadmap cards */
+.roadmap-card:hover {
+  box-shadow: 0 20px 50px rgba(14,190,255,0.6);
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
