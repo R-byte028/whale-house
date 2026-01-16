@@ -541,6 +541,20 @@ footer a.footer-x:hover {
   color: #ffffff;
 }
 
+.footer-logo {
+  height: 28px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  vertical-align: text-bottom; /* aligns more precisely with baseline */
+  margin-left: 5px;            /* optional spacing from 'Developer' text */
+}
+
+.footer-logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 /* ================= SMOOTH SCROLLING ================= */
 html {
   scroll-behavior: smooth;
@@ -582,3 +596,5 @@ html {
 nav a.active {
   color: #00eaff;
 }
+
+
