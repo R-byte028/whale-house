@@ -94,3 +94,18 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", revealOnScroll);
   revealOnScroll(); // run once on load
 });
+
+const copyBtn = document.getElementById("copyCA");
+const contractText = document.getElementById("contractAddress");
+
+if (copyBtn && contractText) {
+  copyBtn.addEventListener("click", () => {
+    const text = contractText.textContent.replace("CA: ", "");
+    navigator.clipboard.writeText(text);
+
+    copyBtn.textContent = "✅";
+    setTimeout(() => {
+      copyBtn.textContent = "📋";
+    }, 1500);
+  });
+}
